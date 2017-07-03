@@ -21,3 +21,19 @@ def webClientPostHandler(request):
     except Exception as e:
         print(e)
         return HttpResponse('exception has append in function shibor.webClientPostHandler')
+
+def initClientPostHandler(request):
+    """
+    处理init发出的请求，init发来的数据是shibor的历史数据
+    """
+    try:
+        data=request.POST
+        row=ShiborRate.objects.filter(pushDate__istartswith=data['pushDate'])
+        if len(row) == 0:
+            newRow=ShiborRate()
+            newRow.fromJson(data)
+            newRow.save()
+        return HttpResponse("ok")
+    except Exception as e:
+        print(e)
+        return HttpResponse('exception has append in function shibor.initClientPostHandler')

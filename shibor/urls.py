@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from .views import webClientPostHandler
+from .views import webClientPostHandler,initClientPostHandler
 
 urlpatterns = [
     url(r'^webclient/upload/', webClientPostHandler),
+    url(r'^init/upload/',initClientPostHandler),
 ]
