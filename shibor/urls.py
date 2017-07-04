@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from .views import webClientPostHandler,initClientPostHandler
+from .views import webClientPostHandler,initClientPostHandler,ajaxClientGetHandler
 
 urlpatterns = [
     url(r'^webclient/upload/', webClientPostHandler),
     url(r'^init/upload/',initClientPostHandler),
+    url(r'^client/ajax/history',ajaxClientGetHandler),
 ]

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import ShiborRate
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
+from datetime import datetime,date
 import json
 
 # Create your views here.
@@ -37,3 +38,51 @@ def initClientPostHandler(request):
     except Exception as e:
         print(e)
         return HttpResponse('exception has append in function shibor.initClientPostHandler')
+
+def ajaxClientGetHandler(request):
+    """
+    用于完成对shibor历史记录的查询
+    """
+    try:
+        year=datetime.now().year - 3
+        rows=ShiborRate.objects.filter(pushDate__year__gte=year)
+        pushDate=[str(v.pushDate)[:10] for v in rows]
+        oneNight=[float(v.oneNight) for v in rows]
+        oneWeek=[float(v.oneWeek) for v in rows]
+        twoWeek=[float(v.twoWeek) for v in rows]
+        oneMonth=[float(v.oneMonth) for v in rows]
+        threeMonth=[float(v.threeMonth) for v in rows]
+        sixMonth=[float(v.sixMonth) for v in rows]
+        nineMonth=[float(v.nineMonth) for v in rows]
+        oneYear=[float(v.oneYear) for v in rows]
+        return JsonResponse({'pushDate':pushDate,
+            'oneNight':oneNight,
+            'oneWeek':oneWeek,
+            'twoWeek':twoWeek,
+            'oneMonth':oneMonth,
+            'threeMonth':threeMonth,
+            'sixMonth':sixMonth,
+            'nineMonth':nineMonth,
+            'oneYear':oneYear
+            })
+    except Exception as e:
+        print(e)
+        return JsonResponse({'k':'error in shibor.views.ajaxClientGetHandler'})
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
