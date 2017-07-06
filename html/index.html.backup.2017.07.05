@@ -8,6 +8,13 @@
 	<script src="../js/macarons.js"></script>
 </head>
 <body>
+<!--
+<div class="header">
+	<div class="container">
+		<div class="logo">LOGO</div>
+	</div>
+</div>
+-->
 <div class="gient-screen">
 	<div class="container">
 		<div class="welcome">
@@ -16,7 +23,7 @@
 		</div>
 		<div class="tabs-menu">
 			<ul class="list">
-				<li class="list-item active" id="shiborItem"><span>shibor</span></li>
+				<li class="list-item active"><span>shibor</span></li>
 				<li class="list-item"><span>央行</span></li>
 				<li class="list-item"><span>黄金</span></li>
 				<li class="list-item"><span>A股</span></li>
@@ -31,10 +38,7 @@
 <div class="main-canvas">
 	<div class="container active" id="shibor">
 		<div class="canvas">
-                        <div class="canvas-main">
-                                <div class="big-canvas" id="reportShiborOneNight"></div>
-                        </div>
-			
+			<!-- <div class="canvas-title">title</div> -->
 			<div class="canvas-main">
 				<div class="big-canvas" id="s1"></div>
 			</div>
