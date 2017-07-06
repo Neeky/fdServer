@@ -5,6 +5,9 @@
 	<title>欢迎来到 www.financedatas.com</title>
 	<link rel="stylesheet" href="../css/bootstrap.css">
 	<link rel="stylesheet" href="../css/index.css">
+        <script src="../js/echarts.min.js"></script>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/jquery.particleground.min.js"></script>
 	<script src="../js/macarons.js"></script>
 </head>
 <body>
@@ -89,10 +92,6 @@
 
 
 
-<script src="../js/echarts.min.js"></script>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/jquery.particleground.min.js"></script>
-<script src="../js/index.js"></script>
 <script>
 $(document).ready(function() {
 	var bg = $('<div style="position:absolute;left:0;top:56px;width:100%;height:100%;overflow:hidden;z-index:-1;" ></div>');
@@ -112,5 +111,6 @@ $(".tabs-menu .list-item").click(function(){
 	$(".main-canvas .container").eq($(this).index()).addClass("active").siblings().removeClass("active");
 })
 </script>
+<script src="../js/fdtools.js"></script>
 </body>
 </html>
