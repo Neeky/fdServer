@@ -19,3 +19,4 @@ class GlodPrice(models.Model):
         self.closingPrice=jdt['closingPrice']
         self.highestPrice=jdt['highestPrice']
         self.minimumPrice=jdt['minimumPrice']
+
