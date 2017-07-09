@@ -51,19 +51,23 @@ def ajaxClientGetHandler(request):
     """
     """
     try:
-        year=datetime.now().year
+        year=datetime.now().year - 8
         qs=GlodPrice.objects.filter(pushDate__year__gte=year)
         pushDate=[str(v.pushDate)[:10] for v in qs ]
-        openingPrice=[float(v.openingPrice) for v in qs ]
-        closingPrice=[float(v.closingPrice) for v in qs ]
-        highestPrice=[float(v.highestPrice) for v in qs ]
-        minimumPrice=[float(v.minimumPrice) for v in qs ]
+        datas=[ [float(v.openingPrice),float(v.closingPrice),float(v.minimumPrice),float(v.highestPrice)] for v in qs]
+
+        #openingPrice=[float(v.openingPrice) for v in qs ]
+        #closingPrice=[float(v.closingPrice) for v in qs ]
+        #highestPrice=[float(v.highestPrice) for v in qs ]
+        #minimumPrice=[float(v.minimumPrice) for v in qs ]
         return JsonResponse({
             'pushDate':pushDate,
-            'openingPrice':openingPrice,
-            'closingPrice':closingPrice,
-            'highestPrice':highestPrice,
-            'minimumPrice':minimumPrice})
+            'datas':datas
+            #'openingPrice':openingPrice,
+            #'closingPrice':closingPrice,
+            #'highestPrice':highestPrice,
+            #'minimumPrice':minimumPrice,
+            })
     except Exception as e:
         print(e)
         return HttpResponse('error ocurr in glod.views.ajaxClientGetHandler')

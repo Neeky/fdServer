@@ -144,65 +144,10 @@ function shiborHandler(){
                 rss.setOption(optionsShort);
                 rsl.setOption(optionsLong);
         }
-    );
-}
-
-function glodHandler(){
-    // 加载黄金相关的数据
-    var rg=echarts.init(document.getElementById('reportGlod'));
-    $.get("http://www.workstudio.com/component/glod/client/ajax/history").done(
-        function(data){
-                var optionsGlod={
-                    title:{text:'国内黄金价格走势',subtext:'www.financedatas.com'},
-                    tooltip:{trigger:'axis'},
-                    legend: {
-                        data:['国内金价']
-                    },
-                    grid:{left:'6%'},
-                    toolbox: {
-                        show: true,
-                        feature: {
-                            magicType: {show: true, type: ['stack', 'tiled']},
-                            saveAsImage: {show: true}
-                    }
-                    },
-                    xAxis:{
-                        type:'category',
-                        boundaryGap: false,
-                        data:data['pushDate'],
-                        name:'日期'
-                    },
-                    /*
-                    yAxis:{
-                        type:'value'
-                        //name:'利率'
-                    },*/
-                    yAxis: {
-                        scale: true,
-                        splitArea: {
-                            show: true
-                        }
-                    },
-                    dataZoom:{type:'slider'},
-                    series:[
-                        {
-                            name:'国内金价',
-                            type:'k',
-                            smooth:true,
-                            data:data['datas']
-                        }
-                        
-                    ]
-                };  
-                rg.setOption(optionsGlod);
-        }
-    );
+    )
 }
 
 document.getElementById('shiborItem').addEventListener('click',function(){
     shiborHandler();
-});
-document.getElementById('glodItem').addEventListener('click',function(){
-    glodHandler();
 });
 shiborHandler();
