@@ -44,7 +44,7 @@ def ajaxClientGetHandler(request):
     用于完成对shibor历史记录的查询
     """
     try:
-        year=datetime.now().year - 3
+        year=datetime.now().year - 10
         rows=ShiborRate.objects.filter(pushDate__year__gte=year)
         pushDate=[str(v.pushDate)[:10] for v in rows]
         oneNight=[float(v.oneNight) for v in rows]
