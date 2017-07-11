@@ -20,7 +20,7 @@
 		<div class="tabs-menu">
 			<ul class="list">
 				<li class="list-item active" id="shiborItem"><span>shibor</span></li>
-				<li class="list-item" id="pbcItem"><span>央行</span></li>
+				<li class="list-item" id="pubItem"><span>央行</span></li>
 				<li class="list-item" id="glodItem"><span>黄金</span></li>
 				<li class="list-item"><span>A股</span></li>
 				<li class="list-item"><span>基金</span></li>
@@ -53,15 +53,10 @@
 <!-- *********************************************************************************-->
 	<div class="container" id="centrailbank">
 		<div class="canvas">
+			<div class="canvas-title">title</div>
 			<div class="canvas-main">
-				<div class="big-canvas" id="reportPbcM0"></div>
+				<div class="big-canvas" id="s5"></div>
 			</div>
-                        <div class="canvas-main">
-                                <div class="big-canvas" id="reportPbcM1"></div>
-                        </div>
-                        <div class="canvas-main">
-                                <div class="big-canvas" id="reportPbcM2"></div>
-                        </div>
 		</div>
 	</div>
 <!-- ********************************************************************************-->

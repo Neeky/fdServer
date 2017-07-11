@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shibor.apps.ShiborConfig',
     'glod.apps.GlodConfig',
+    'pbc.apps.PbcConfig',
 ]
 
 MIDDLEWARE = [
