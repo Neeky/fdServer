@@ -34,4 +34,19 @@ def ajaxClientGetHandler(request):
         print(e)
         return JsonResponse({'k':'error in pbc.views.ajaxClientGetHandler'})
 
+def getLastMoneySupply(request):
+    """
+    """
+    try:
+        year=datetime.now().year -1
+        row=MoneySupply.objects.all()
+        print(len(row))
+        row=row[len(row)-1]
+        return JsonResponse({'m0':float(row.m0)*10000000,'m1':float(row.m1)*10000000,'m2':float(row.m2)*10000000})
+    except Exception as e:
+        em='error eccur in pbc.views.getLastMoneySupply -- message {0}'.format(e)
+        print(em)
+        return HttpResponse(em)
+
+
 

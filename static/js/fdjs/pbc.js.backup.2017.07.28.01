@@ -1,34 +1,8 @@
 
 function pbcHandler(){
-    var rpms=echarts.init(document.getElementById('reportPbcMS'));
     var rp0=echarts.init(document.getElementById('reportPbcM0'));
     var rp1=echarts.init(document.getElementById('reportPbcM1'));  
     var rp2=echarts.init(document.getElementById('reportPbcM2')); 
-    $.get("component/pbc/get/latest/money/supply").done(
-        function(datas){
-                var optionsMS={
-                    title:{text:'央行货币供应量构成比例',subtext:'www.financedatas.com'},
-                    tooltip:{trigger:'item'},
-                    grid:{left:'6%'},
-                    series:[
-                        {
-                            name:'货币供应量',
-                            type:'pie',
-                            radius : '55%',
-                            center: ['50%', '50%'],
-                            data:[
-                                {value:datas['m0'],name:'流通中的货币(m0)'},
-                                {value:datas['m1'],name:'货币(m1)'},
-                                {value:datas['m2'],name:'货币和准货币(m2)'}
-                            ]
-                        }
-                        
-                    ]
-                };  
-                rpms.setOption(optionsMS);
-        }
-    );
-
     $.get("component/pbc/client/ajax/history").done(
         function(data){
                 var optionsM0={
@@ -51,6 +25,11 @@ function pbcHandler(){
                         data:data['pushDate'],
                         name:'日期'
                     },
+                    /*
+                    yAxis:{
+                        type:'value'
+                        //name:'利率'
+                    },*/
                     yAxis: {
                         scale: true,
                         splitArea: {
