@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'shibor.apps.ShiborConfig',
     'glod.apps.GlodConfig',
     'pbc.apps.PbcConfig',
+    'cninfo.apps.CninfoConfig',
 ]
 
 MIDDLEWARE = [

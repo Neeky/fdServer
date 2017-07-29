@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^component/shibor/',include('shibor.urls')),
     url(r'^component/glod/',include('glod.urls')),
     url(r'^component/pbc/',include('pbc.urls')),
+    url(r'^component/cninfo/',include('cninfo.urls')),
 ]
