@@ -14,7 +14,7 @@ def addCompany(request):
         data=json.loads(request.body.decode('utf8'))
         rows=Company.objects.filter(stockCode=data['stockCode'])
         if (len(rows) == 0):
-            ci=CompanyInfo()
+            ci=Company()
             ci.fromJson(data)
             ci.save()
             return HttpResponse("ok")

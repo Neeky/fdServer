@@ -37,7 +37,7 @@ class Company(models.Model):
     def fromJson(self,jdt):
         self.name=jdt['companyName'].strip()
         self.stockCode=jdt['stockCode'].strip()
-        self.partition=jdt['partition'].strip()
+        self.section=jdt['section'].strip()
         self.mainPage=jdt['mainPage'].strip()
     
     def fromJsonAddBrief(self,jdt):
