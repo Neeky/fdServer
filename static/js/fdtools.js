@@ -4,7 +4,7 @@ function shiborHandler(){
     var rso=echarts.init(document.getElementById('reportShiborOneNight'));
     var rss=echarts.init(document.getElementById('reportShiborShort'));
     var rsl=echarts.init(document.getElementById('reportShiborLong'));
-    $.get("http://www.workstudio.com/component/shibor/client/ajax/history").done(
+    $.get("component/shibor/client/ajax/history").done(
         function(data){
                 var optionsOneNight={
                     title:{text:'上海银行间同业拆放利率(shibor)走势',subtext:'www.financedatas.com'},
@@ -174,7 +174,7 @@ function glodHandler(){
     // 加载黄金相关的数据
     var rg=echarts.init(document.getElementById('reportGlod'));
     var rgl=echarts.init(document.getElementById('reportGlodLong'));
-    $.get("http://www.workstudio.com/component/glod/client/ajax/history").done(
+    $.get("component/glod/client/ajax/history").done(
         function(data){
                 var optionsGlod={
                     title:{text:'国内黄金价格近期走势',subtext:'www.financedatas.com'},
@@ -279,7 +279,7 @@ function pbcHandler(){
     var rp0=echarts.init(document.getElementById('reportPbcM0'));
     var rp1=echarts.init(document.getElementById('reportPbcM1'));  
     var rp2=echarts.init(document.getElementById('reportPbcM2')); 
-    $.get("http://www.workstudio.com/component/pbc/client/ajax/history").done(
+    $.get("component/pbc/client/ajax/history").done(
         function(data){
                 var optionsM0={
                     title:{text:'流通中货币(M0)',subtext:'www.financedatas.com'},
