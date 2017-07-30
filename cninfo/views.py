@@ -46,7 +46,8 @@ def updateCompanyBriefInfo(request):
         rows=Company.objects.filter(stockCode=data['stockCode'])
         if len(rows) != 0:
             row=rows[0]
-            row.fromJsonAddBrief(data)
+            if data['status'] == 'ok':
+                row.fromJsonAddBrief(data)
             row.lastUpdate=datetime.now()
             row.save()
             return HttpResponse("ok")
@@ -60,7 +61,7 @@ def getTask(request):
     """
     try:
         now=datetime.now()
-        today=datetime(year=now.year,month=now.month,day=now.month,hour=0,minute=0,second=0)
+        today=datetime(year=now.year,month=now.month,day=now.day,hour=0,minute=0,second=0)
         rows=Company.objects.filter(lastUpdate__lt=today)
         if len(rows) >=1:
             rs=[rows[0].stockCode,rows[0].mainPage]
