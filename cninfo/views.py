@@ -41,17 +41,20 @@ def listCompanys(request):
 def updateCompanyBriefInfo(request):
     """
     """
+    row=None
     try:
         data=json.loads(request.body.decode('utf8'))
         rows=Company.objects.filter(stockCode=data['stockCode'])
         if len(rows) != 0:
             row=rows[0]
-            if data['status'] == 'ok':
-                row.fromJsonAddBrief(data)
+            row.fromJsonAddBrief(data)
             row.lastUpdate=datetime.now()
             row.save()
             return HttpResponse("ok")
     except Exception as e:
+        if row != None:
+            row.lastUpdate=datetime.now()
+            row.save()
         em='exception occur in cninfo.views.updateComanyBriefInfo message -- {0}'.format(e) 
         print(em)
         return HttpResponse(em)
