@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
+from django.db.models import Q
 from .models import Company
 import json
 from datetime import datetime,date,timedelta
@@ -65,7 +66,8 @@ def getTask(request):
     try:
         now=datetime.now()
         today=datetime(year=now.year,month=now.month,day=now.day,hour=0,minute=0,second=0)
-        rows=Company.objects.filter(lastUpdate__lt=today)
+        rows=Company.objects.filter(Q(lastUpdate__lt=today),Q(section='深市主板') | Q(section='中小企业板') | 
+        Q(section='创业板') | Q(section='沪市主板'))
         if len(rows) >=1:
             rs=[rows[0].stockCode,rows[0].mainPage]
             return JsonResponse({'company':rs})
