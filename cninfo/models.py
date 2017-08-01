@@ -27,8 +27,8 @@ class Company(models.Model):
     issuedQuantity=models.DecimalField(max_digits=12,decimal_places=0,default=0,help_text='发行数量')
     issuePrice=models.DecimalField(max_digits=8,decimal_places=4,default=0,help_text='发行价格')
     ipoPERate=models.DecimalField(max_digits=6,decimal_places=2,default=0,help_text='发行市盈率')
-    issueMode=models.CharField(max_length=16,default='',help_text='发行方式')
-    leadUnderwrite=models.CharField(max_length=16,default='',help_text='主承销商')
+    issueMode=models.CharField(max_length=32,default='',help_text='发行方式')
+    leadUnderwrite=models.CharField(max_length=32,default='',help_text='主承销商')
     issueRecommender=models.CharField(max_length=32,default='',help_text='上市推荐人')
     sponsor=models.CharField(max_length=32,default='',help_text='保荐机构')    
     #lastupdated 用于表示最近一次更新的时间
