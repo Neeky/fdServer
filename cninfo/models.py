@@ -50,6 +50,7 @@ class Company(models.Model):
             raise e
     
     def fromJsonAddBrief(self,jdt):
+        print(jdt)
         try:
             if jdt['status'] == 'shortinput':
                 raise ShortInput('exception fdServer.exceptions.ShortInput in cninfo.models.fromJsonAddBrief')
@@ -65,8 +66,8 @@ class Company(models.Model):
             self.companyPhone=jdt['companyPhone']
             self.companyFax=jdt['companyFax']
             self.companyWebsite=jdt['companyWebsite']
-            self.listingTime=jdt['listingTime']
-            self.prospectusTime=jdt['prospectusTime']
+            self.listingTime=jdt['listingTime'] if jdt['listingTime'] != '' else '4096-01-01'
+            self.prospectusTime=jdt['prospectusTime'] if jdt['prospectusTime'] !='' else '4096-01-01' 
             self.issuedQuantity=jdt['issuedQuantity']
             self.issuePrice=jdt['issuePrice']
             self.ipoPERate=jdt.setdefault('ipoPERate',0)
