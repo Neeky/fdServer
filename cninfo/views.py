@@ -4,6 +4,7 @@ from django.db.models import Q
 from .models import Company
 import json
 from datetime import datetime,date,timedelta
+from collections import Counter
 
 # Create your views here.
 
@@ -78,7 +79,26 @@ def getTask(request):
         print(em)
         return HttpResponse(em)
 
-
-
+def listCompanyCountByIndustry(request):
+    """
+    """
+    try:
+        rows=Company.objects.filter(Q(section='深市主板') | Q(section='中小企业板') |
+        Q(section='创业板') | Q(section='沪市主板'))
+        rowsCache=[row for row in rows]
+        industrys=[row.industry for row in rowsCache]
+        industryCounter=Counter()
+        for industry in industrys:
+           industryCounter[industry]+=1
+        res=[[key,industryCounter[key]] for key in industryCounter.keys()]
+        inds=[key for key in industryCounter.keys()]
+        print(inds)
+        count=[industryCounter[key] for key in inds ]
+        inds=[i if i !='' else '其它' for i in inds ]
+        return JsonResponse({'industrys':inds,'counters':count},json_dumps_params={'ensure_ascii':False})
+    except Exception as e:
+        em="exception in cninfo.views.getCompanyCountByIndustry : {0}".format(e)
+        print(em)
+        return HttpResponse(em)
 
  

@@ -23,7 +23,7 @@
 				<li class="list-item active" id="shiborItem"><span>shibor</span></li>
 				<li class="list-item" id="pbcItem"><span>央行</span></li>
 				<li class="list-item" id="glodItem"><span>黄金</span></li>
-				<li class="list-item"><span>A股</span></li>
+				<li class="list-item" id="stockItem"><span>A股</span></li>
 				<li class="list-item"><span>基金</span></li>
 				<li class="list-item"><span>债市</span></li>
 				<li class="list-item"><span>能源&矿产</span></li>
@@ -85,8 +85,15 @@
                         </div>
                 </div>
 	</div>
-	<div class="container" id="ashares">
-		aa
+	<div class="container" id="stock">
+	        <div class="canvas">
+                        <div class="canvas-main">
+                            <div class="big-canvas" id="reportCninfoIndustry"> </div>
+                        </div>
+                        <!--<div class="canvas-main">
+                                <div class="big-canvas" id="reportPbcM0"></div>
+                        </div>-->
+                </div>
 	</div>
 	<div class="container" id="fund">
 		aa
@@ -133,5 +140,6 @@ $(".tabs-menu .list-item").click(function(){
 <script src="../js/fdjs/shibor.js"></script>
 <script src="../js/fdjs/pbc.js"></script>
 <script src="../js/fdjs/glod.js"></script>
+<script src="../js/fdjs/cninfo.js"></script>
 </body>
 </html>
