@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from .views import addCompany,listCompanys,updateCompanyBriefInfo,getTask,listCompanyCountByIndustry
+from .views import ( addCompany,listCompanys,updateCompanyBriefInfo,
+                     getTask,listCompanyCountByIndustry,addCompanyBasicInfo )
 
 urlpatterns = [
+    url(r'^add/company/basicinfo',addCompanyBasicInfo),
     url(r'^add/company/', addCompany),
     url(r'^list/companys/',listCompanys),
     url(r'^update/company/brief/info',updateCompanyBriefInfo),

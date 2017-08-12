@@ -101,4 +101,27 @@ def listCompanyCountByIndustry(request):
         print(em)
         return HttpResponse(em)
 
- 
+def addCompanyBasicInfo(request):
+    """
+    chanceClient post提交数据stockCode,name,mainpage时用到
+    """
+    try:
+        data=request.POST
+        currentRow=Company.objects.filter(stockCode=data['stockCode'])
+        if len(currentRow) ==0:
+            c=Company()
+            c.stockCode=data['stockCode']
+            c.name     =data['name']
+            c.mainpage =data['mainPage']
+            c.save()
+            return HttpResponse('ok save complete')
+        else:
+            return HttpResponse('warning data has been in database')
+    except Exception as e:
+        em="exception in cninfo.views.add -- {0}".format(e)
+        print(em)
+        return HttpResponse(em)
+
+
+
+
