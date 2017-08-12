@@ -73,9 +73,31 @@ def ajaxClientGetHandler(request):
         return HttpResponse('error ocurr in glod.views.ajaxClientGetHandler')
 
 
-
-
-
+def add(request):
+    """
+    chanceClient post提交数据时用到
+    """
+    try:
+        now=datetime.now()
+        year,month,day=now.year,now.month,now.day
+        currentRow=GlodPrice.objects.filter(pushDate__istartswith='{0}-{1}-{2}'.format(year,month,day))
+        if len(currentRow) ==0:
+            data=request.POST
+            gp=GlodPrice()
+            gp.pushDate=now
+            gp.contract=data['contract']
+            gp.openingPrice=data['opening']
+            gp.closingPrice=data['closing']
+            gp.highestPrice=data['highest']
+            gp.minimumPrice=data['lowest']
+            gp.save()
+            return HttpResponse('ok data saved ')
+        else:
+            return HttpResponse('data has been in database')
+    except Exception as e:
+        em="exception in glod.views.add -- {0}".format(e)
+        print(em)
+        return HttpResponse(em)
 
 
 
