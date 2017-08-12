@@ -25,7 +25,7 @@ SECRET_KEY = '2^*bc!dcj3r$$3qp%^lsznywszyfupes2%_na99p*4&lqmsb*!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.workstudio.com','www.financedatas.com']
+ALLOWED_HOSTS = ['www.workstudio.com','www.financedatas.com','www.cstudio.com']
 
 
 # Application definition

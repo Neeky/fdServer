@@ -70,8 +70,32 @@ def ajaxClientGetHandler(request):
         return JsonResponse({'k':'error in shibor.views.ajaxClientGetHandler'})
 
     
-
-
+def add(request):
+    """
+    chanceClient post提交数据时用到
+    """
+    try:
+        currentRow=ShiborRate.objects.filter(pushDate__istartswith=request.POST['pushDate'])
+        if len(currentRow) == 1:
+            pass
+        else:
+            sr              =ShiborRate()
+            data            =request.POST
+            sr.pushDate     =data['pushDate']
+            sr.oneNight     =data['oneNight']
+            sr.oneWeek      =data['oneNight']
+            sr.twoWeek      =data['twoWeek']
+            sr.oneMonth     =data['oneMonth']
+            sr.threeMonth   =data['threeMonth']
+            sr.sixMonth     =data['sixMonth']
+            sr.nineMonth    =data['nineMonth']
+            sr.oneYear      =data['oneYear']
+            sr.save()
+            return HttpResponse('ok')
+    except Exception as e:
+        em="exception in shibor.views.add -- {0}".format(e)
+        print(em)
+        return HttpResponse(em)
 
 
 
