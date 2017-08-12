@@ -77,7 +77,7 @@ def add(request):
     try:
         currentRow=ShiborRate.objects.filter(pushDate__istartswith=request.POST['pushDate'])
         if len(currentRow) == 1:
-            pass
+            return HttpResponse('data has in database')
         else:
             sr              =ShiborRate()
             data            =request.POST
