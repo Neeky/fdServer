@@ -17,7 +17,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from .views import add, webClientPostHandler,webClientPostHistoryHandler,ajaxClientGetHandler
 urlpatterns = [
-    url(r'^add/',add)
+    url(r'^add/',add),
     url(r'^webclient/upload/',webClientPostHandler),
     url(r'^webclient/history/',webClientPostHistoryHandler),
     url(r'^client/ajax/history',ajaxClientGetHandler),
