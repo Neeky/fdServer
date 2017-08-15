@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^component/glod/'  ,include('glod.urls')),
     url(r'^component/pbc/'   ,include('pbc.urls')),
     url(r'^component/cninfo/',include('cninfo.urls')),
-    url(r'^component/sse/'   ,include('sse.urls')),
+    url(r'^component/sse/',include('sse.urls')),
 ]
