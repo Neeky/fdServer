@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'glod.apps.GlodConfig',
     'pbc.apps.PbcConfig',
     'cninfo.apps.CninfoConfig',
+    'sse.apps.SseConfig',
 ]
 
 MIDDLEWARE = [
