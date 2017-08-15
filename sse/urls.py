@@ -18,5 +18,5 @@ from django.contrib   import admin
 from .views           import addOverview
 
 urlpatterns = [
-    url(r'^add/overviw',addOverview),
+    url(r'^add/overveiw',addOverview),
 ]
