@@ -80,7 +80,8 @@ def add(request):
     try:
         now=datetime.now()
         year,month,day=now.year,now.month,now.day
-        currentRow=GlodPrice.objects.filter(pushDate__istartswith='{0}-{1}-{2}'.format(year,month,day))
+        currentRow=GlodPrice.objects.filter(pushDate__istartswith='{0:0>#4}-{1:0>#2}-{2:0>#2}'.format(
+                                                                          year,month,day))
         if len(currentRow) ==0:
             data=request.POST
             gp=GlodPrice()
