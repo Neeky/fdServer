@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'pbc.apps.PbcConfig',
     'cninfo.apps.CninfoConfig',
     'sse.apps.SseConfig',
+    'csindex.apps.CsindexConfig',
 ]
 
 MIDDLEWARE = [
