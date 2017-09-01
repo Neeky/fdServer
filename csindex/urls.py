@@ -18,5 +18,5 @@ from django.contrib import admin
 from .views import add_index_overview
 
 urlpatterns = [
-    url(r'^add/overview/$',add_index_overview),
+    url(r'^add/overview',add_index_overview),
 ]
