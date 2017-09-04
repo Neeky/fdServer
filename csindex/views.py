@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http      import HttpResponse,JsonResponse
 from datetime         import datetime
-from .models          import IndexOverview 
+from .models          import IndexOverview,IndexDetail
 from django.db.models import Q
 import json
 # Create your views here.
@@ -24,11 +24,29 @@ def add_index_overview(request):
             return HttpResponse('ok data has been saved')
         return HttpResponse('warn data has been in database')
     except Exception as e:
-        em='exception in sse.view.addOverview --{0}'.format(e)
+        em='exception in sse.view.add_index_overview --{0}'.format(e)
         print(em)
         return HttpResponse(em)
             
  
-        
+def add_index_detail(request):
+    try:
+        datas=request.POST
+        pushDate=datas['pushDate']
+        indexName=datas['indexName']
+        currentRow=IndexDetail.objects.filter(Q(pushDate__istartswith=pushDate),Q(indexName=indexName))
+        if len(currentRow) ==0:
+            ind=IndexDetail()
+            ind.pushDate=pushDate
+            ind.indexName=indexName
+            ind.delta=datas['delta']
+            ind.deltaPercent=datas['deltaPercent']
+            ind.save()
+            return HttpResponse('ok data has been saved')
+        return HttpResponse('warn data has been in database')
+    except Exception as e:
+        em='exception in sse.view.add_index_detail --{0}'.format(e)
+        print(em)
+        return HttpResponse(em) 
 
 

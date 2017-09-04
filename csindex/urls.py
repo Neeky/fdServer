@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from .views import add_index_overview
+from .views import add_index_overview,add_index_detail
 
 urlpatterns = [
     url(r'^add/overview',add_index_overview),
+    url(r'^add/detail',add_index_detail)
 ]

@@ -9,3 +9,8 @@ class IndexOverview(models.Model):
     pb =models.DecimalField(max_digits=10,decimal_places=6)
     dp =models.DecimalField(max_digits=10,decimal_places=6)
 
+class IndexDetail(models.Model):
+    pushDate=models.DateTimeField()
+    indexName=models.CharField(help_text='指数名',max_length=8)
+    delta=models.DecimalField(max_digits=10,decimal_places=6)
+    deltaPercent=models.DecimalField(max_digits=10,decimal_places=6)
