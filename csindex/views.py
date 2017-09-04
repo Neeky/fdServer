@@ -41,6 +41,7 @@ def add_index_detail(request):
             ind.indexName=indexName
             ind.delta=datas['delta']
             ind.deltaPercent=datas['deltaPercent']
+            ind.closeValue=datas['closeValue']
             ind.save()
             return HttpResponse('ok data has been saved')
         return HttpResponse('warn data has been in database')
