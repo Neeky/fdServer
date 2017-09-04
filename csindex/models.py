@@ -12,5 +12,6 @@ class IndexOverview(models.Model):
 class IndexDetail(models.Model):
     pushDate=models.DateTimeField()
     indexName=models.CharField(help_text='指数名',max_length=8)
-    delta=models.DecimalField(max_digits=10,decimal_places=6)
-    deltaPercent=models.DecimalField(max_digits=10,decimal_places=6)
+    closeValue=models.DecimalField(max_digits=16,decimal_places=4)
+    delta=models.DecimalField(max_digits=16,decimal_places=4)
+    deltaPercent=models.DecimalField(max_digits=16,decimal_places=4)
