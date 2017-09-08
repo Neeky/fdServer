@@ -25,7 +25,7 @@ SECRET_KEY = '2^*bc!dcj3r$$3qp%^lsznywszyfupes2%_na99p*4&lqmsb*!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.workstudio.com','www.financedatas.com','www.cstudio.com']
+ALLOWED_HOSTS = ['www.workstudio.com','www.financedatas.com','www.cstudio.com','www.localhost.com','127.0.0.1']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'cninfo.apps.CninfoConfig',
     'sse.apps.SseConfig',
     'csindex.apps.CsindexConfig',
+    'market.apps.MarketConfig',
 ]
 
 MIDDLEWARE = [

@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^component/cninfo/' ,include('cninfo.urls')),
     url(r'^component/sse/'    ,include('sse.urls')),
     url(r'^component/csindex/',include('csindex.urls')),
+    url(r'^component/market/' ,include('market.urls')),
 ]
