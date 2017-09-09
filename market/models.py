@@ -71,7 +71,7 @@ class StockIndex(models.Model):
     higest_value=models.DecimalField(help_text="最高",max_digits=16,decimal_places=4,default=0)
     lowest_value=models.DecimalField(help_text="最低",max_digits=16,decimal_places=4,default=0)
     fluctuation =models.DecimalField(help_text="涨跌幅",max_digits=16,decimal_places=4,default=0)
-    transaction_amount=models.DecimalField(help_text="成交金额",max_digits=16,decimal_places=4,default=0)
+    transaction_amount=models.DecimalField(help_text="成交金额",max_digits=20,decimal_places=4,default=0)
     spe         =models.DecimalField(help_text="静态市盈率",max_digits=16,decimal_places=4,default=0)
     dpe         =models.DecimalField(help_text="动态市盈率",max_digits=16,decimal_places=4,default=0)
     pb          =models.DecimalField(help_text="市净率",max_digits=16,decimal_places=4,default=0)
