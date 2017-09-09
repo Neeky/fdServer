@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
-from market.models import InvestorSituation , ShiborRate
+from market.models import InvestorSituation , ShiborRate,StockIndex
+from django.db.models import Q
 
 # Create your views here.
 
@@ -48,7 +49,49 @@ def add_shibor_rate(request):
     message="warn data maybe already in database"
     return HttpResponse(message)
 
+def add_or_update_stock_index(request):
+    """
+    增加股指信息
+    """
+    post=request.POST
+    target_row=None
+    em=""
+    try:
+        #获取目标行
+        target_row=StockIndex.objects.get(Q(push_date=post['push_date']),Q(index_name=post['index_name']))
+    except StockIndex.DoesNotExist as e:
+        #如果目标行不存在，就创建一个新行
+        target_row=StockIndex()
+    except Exception as e:
+        #为其它可能就异常留下空位
+        em="warn exception in market.views.add_stock_index :{0}".format(e)
+    #如果目标行不是空，那么就可以对它进入操作了
+    if target_row != None:
+        #把push_date和index_name设置一下，这个动作对于insert是必要的，对于update是无害的
+        target_row.push_date=post['push_date']
+        target_row.index_name=post['index_name']
+        #由于这个函数要处理两个不同的更新逻辑，不同的逻辑传来的参数又不一样，所以这里用open_value来区分
+        if 'open_value' in post and target_row.open_value == 0:
+            target_row.open_value=post['open_value']
+            target_row.close_value=post['close_value']
+            target_row.higest_value=post['higest_value']
+            target_row.lowest_value=post['lowest_value']
+            target_row.fluctuation=post['fluctuation']
+            target_row.transaction_amount=post['transaction_amount']
+        elif target_row.spe == 0 and 'spe' in post:
+            target_row.spe  =post['spe']
+            target_row.dpe  =post['dpe']
+            target_row.pb   =post['pb']
+            target_row.dp   =post['dp']
+            target_row.lyspe=post['lyspe']
+            target_row.lydpe=post['lydpe']
+            target_row.lypb =post['lypb']
+        target_row.save()
+        em="ok data been inserted or updated"
+    return HttpResponse(em)
 
+
+        
     
 
 

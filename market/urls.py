@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^add/investorsituation/', views.add_investor_situation),
     #增加shibor利率
     url(r'^add/shiborrate/',views.add_shibor_rate),
+    #
+    url(r'^add/update/stockindex/',views.add_or_update_stock_index),
 ]

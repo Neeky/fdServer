@@ -60,6 +60,58 @@ class ShiborRate(models.Model):
         shibor.one_year   =post['one_year']
         return shibor
 
+class StockIndex(models.Model):
+    """
+    记录股指信息
+    """
+    push_date   =models.DateField(help_text="发布时间")
+    index_name  =models.CharField(help_text="指数名",max_length=16)
+    open_value  =models.DecimalField(help_text="开盘",max_digits=16,decimal_places=4,default=0)
+    close_value =models.DecimalField(help_text="收盘",max_digits=16,decimal_places=4,default=0)
+    higest_value=models.DecimalField(help_text="最高",max_digits=16,decimal_places=4,default=0)
+    lowest_value=models.DecimalField(help_text="最低",max_digits=16,decimal_places=4,default=0)
+    fluctuation =models.DecimalField(help_text="涨跌幅",max_digits=16,decimal_places=4,default=0)
+    transaction_amount=models.DecimalField(help_text="成交金额",max_digits=16,decimal_places=4,default=0)
+    spe         =models.DecimalField(help_text="静态市盈率",max_digits=16,decimal_places=4,default=0)
+    dpe         =models.DecimalField(help_text="动态市盈率",max_digits=16,decimal_places=4,default=0)
+    pb          =models.DecimalField(help_text="市净率",max_digits=16,decimal_places=4,default=0)
+    dp          =models.DecimalField(help_text="股息率",max_digits=16,decimal_places=4,default=0)
+    lyspe       =models.DecimalField(help_text="去年底静态市盈率",max_digits=16,decimal_places=4,default=0)
+    lydpe       =models.DecimalField(help_text="去年底动态市盈率",max_digits=16,decimal_places=4,default=0)
+    lypb        =models.DecimalField(help_text="去年底市净率",max_digits=16,decimal_places=4,default=0)
+
+    class Meta:
+        unique_together=('push_date','index_name')
+
+    @classmethod
+    def add_or_update_and_save_stock_index_info(cls,post):
+        """
+        新增或是对已有的数据进行更新
+        """
+        target_row=None
+        try:
+            target_row=cls.objects.get(models.Q(push_date=post['push_date']),models.Q(index_name=post['index_name']))
+
+        except cls.DoesNotExist as e:
+            #进入到这个说明没有数据，那么就创建一个新行
+            stock=cls()
+            for k in post:
+                if k not in ['push_date','index_name']:
+                    stock[k]=post[k]
+            stock.save()
+            return "ok data been inserted"
+        except Exception as e:
+            em="warn exception in market.models.add_or_update_stock_index_info : {0}".format(e)
+            return em
+        if target_row != None:
+            #如果进入到这个逻辑，那么说数据已经有了
+            for k in post:
+                if k not in ['push_date','index_name']:
+                    target_row[k]=post[k]
+            target_row.save()
+        return "ok data been inserted"
+
+
         
 
 
