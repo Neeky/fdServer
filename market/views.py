@@ -78,6 +78,10 @@ def add_or_update_stock_index(request):
             target_row.lowest_value=post['lowest_value']
             target_row.fluctuation=post['fluctuation']
             target_row.transaction_amount=post['transaction_amount']
+            if 'total_market_value' in post and target_row.total_market_value ==0:
+                target_row.total_market_value=post['total_market_value']
+                target_row.transaction_amount=post['transaction_amount']
+                target_row.circulation_market_value=post['circulation_market_value']
         elif target_row.spe == 0 and 'spe' in post:
             target_row.spe  =post['spe']
             target_row.dpe  =post['dpe']
