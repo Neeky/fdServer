@@ -113,6 +113,14 @@ class StockIndex(models.Model):
             target_row.save()
         return "ok data been inserted"
 
+class FoundationBrief(models.Model):
+    found_code           =models.CharField(help_text="基金号码",max_length=16    ,db_index=True,default='')
+    found_name           =models.CharField(help_text="基金名称",max_length=32    ,db_index=True,default='')
+    found_manager_user   =models.CharField(help_text="基金经理名",max_length=32  ,db_index=True,default='')
+    found_manager_company=models.CharField(help_text="基金管理公司",max_length=32,db_index=True,default='')
+    found_type           =models.CharField(help_text="基金类型",max_length=32    ,db_index=True,default='')
+    found_birth          =models.DateField(help_text="基金成立日期",max_length=32 ,db_index=True,default='1000-01-01')
+    found_exchange       =models.CharField(help_text="交易所",max_length=16      ,default='')
 
         
 

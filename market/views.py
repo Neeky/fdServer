@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
-from market.models import InvestorSituation , ShiborRate,StockIndex
+from market.models import InvestorSituation , ShiborRate,StockIndex,FoundationBrief
 from django.db.models import Q
 
 # Create your views here.
@@ -93,6 +93,33 @@ def add_or_update_stock_index(request):
         target_row.save()
         em="ok data been inserted or updated"
     return HttpResponse(em)
+
+
+def add_foundation_brief(request):
+    """
+    增加foundation brief 信息，如果信息已经存在，那么就更新、没有就插入。
+    """
+    post=request.POST
+    found_code=post['found_code']
+    target_row=None
+    try:
+        target_row=FoundationBrief.objects.get(Q(found_code=found_code))
+        em="ok data has been in database"
+    except FoundationBrief.DoesNotExist as e:
+        target_row=FoundationBrief()
+        target_row.found_code=post['found_code']
+        target_row.found_name=post['found_name']
+        target_row.found_manager_user=post['found_manager_user']
+        target_row.found_manager_company=post['found_manager_company']
+        target_row.found_type=post['found_type']
+        target_row.found_birth=post['found_birth']
+        target_row.found_exchange=post['found_exchange']
+        target_row.save()
+        em="warn data may be in database"
+    except Exception as e:
+        em="error exception in  market.views.add_foundation_brief :{0} ".format(e)
+    return HttpResponse(em)
+
 
 
         
